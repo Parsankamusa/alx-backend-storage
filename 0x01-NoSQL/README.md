@@ -6,7 +6,7 @@
 # Resources
 
 ```
-"https://intranet.alxswe.com/rltoken/wweK7dOY4pf8haCqv9Iv6Q"
+[](https://intranet.alxswe.com/rltoken/wweK7dOY4pf8haCqv9Iv6Q)
 
 ```
 
