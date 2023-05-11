@@ -4,7 +4,8 @@ __init__ method, store an instance of the Redis client as a private variable nam
 """
 import uuid
 import redis
-from typing import Union
+from typing import Callable, Optional, Union
+r = redis.Redis(host='localhost', port=6379, db=0)
 
 
 class Cache:
@@ -16,4 +17,27 @@ class Cache:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+    def get(self, key: str, fn: Optional[Callable] = None) -> Union[bytes, str, int, float, None]:
+        data = self._redis.get(key)
+        if data is None:
+            return None
+        if fn is not None:
+            data = fn(data)
+        return data
+
+    def get_str(self, key: str) -> Optional[str]:
+        return self.get(key, lambda x: x.decode("utf-8"))
+
+    def get_int(self, key: str) -> Optional[int]:
+        return self.get(key, lambda x: int(x))
+    def call_history(method: Callable) -> Callable:
+        @functools.wraps(method)
+        def wrapper(*args, **kwargs):
+            inputs_key = f"{method.__qualname__}:inputs"
+            outputs_key = f"{method.__qualname__}:outputs"
+            r.rpush(inputs_key, str(args))
+            result = method(*args, **kwargs)
+            r.rpush(outputs_key, str(result))
+            return result
+        return wrapper
 
