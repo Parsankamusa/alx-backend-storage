@@ -1,7 +1,4 @@
 # 0x01. NoSQL
-<p>
-<img width="260" height="170" src="https://www.flaticon.com/svg/static/icons/svg/3077/3077450.svg" align="right" >
-</p>
 
 # Resources
 
