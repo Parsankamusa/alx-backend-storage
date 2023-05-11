@@ -39,5 +39,12 @@ class Cache:
             result = method(*args, **kwargs)
             r.rpush(outputs_key, str(result))
             return result
-        return wrapper
+        return wrapperclass Cache:
+   class Cache:
+    @call_history
+    def store(self, key: str, value: str, timeout: int = None):
+        self.client.set(key, value, ex=timeout)
+
+
+    
 
