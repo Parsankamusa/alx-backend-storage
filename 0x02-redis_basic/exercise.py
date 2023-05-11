@@ -30,6 +30,13 @@ class Cache:
 
     def get_int(self, key: str) -> Optional[int]:
         return self.get(key, lambda x: int(x))
+    def count_calls(method):
+    @functools.wraps(method)
+    def wrapper(self, *args, **kwargs):
+        key = method.__qualname__
+        self.client.incr(key)
+        return method(self, *args, **kwargs)
+    return wrapper
     def call_history(method: Callable) -> Callable:
         @functools.wraps(method)
         def wrapper(*args, **kwargs):
