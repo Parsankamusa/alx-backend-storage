@@ -12,6 +12,8 @@ class Cache:
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
+        """ defining a method to type-annonate
+        """
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
         key = str(uuid.uuid4())
