@@ -40,7 +40,7 @@ class Cache:
             key = method.__qualname__
             self.client.incr(key)
             return method(self, *args, **kwargs)
-     return wrapper
+        return wrapper
     def call_history(method: Callable) -> Callable:
         @functools.wraps(method)
         def wrapper(*args, **kwargs):
