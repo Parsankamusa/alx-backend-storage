@@ -1,10 +1,12 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Create a Cache class
 __init__ method, store an instance of the Redis client as a private variable named
 """
 import uuid
 import redis
 from typing import Callable, Optional, Union
+
+
 r = redis.Redis(host='localhost', port=6379, db=0)
 
 
