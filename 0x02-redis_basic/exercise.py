@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Create a Cache class
 __init__ method, store an instance of the Redis client as a private variable named
 """
