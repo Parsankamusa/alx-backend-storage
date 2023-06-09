@@ -24,7 +24,7 @@ def call_history(method: Callable) -> Callable:
 
 
 def count_calls(method: Callable) -> Callable:
-    """ to count how many times methods of the Cache class are called """
+    """ to count how many times methods of the Cache class are called over a Particular momemt/time """
     key = method.__qualname__
 
     @wraps(method)
